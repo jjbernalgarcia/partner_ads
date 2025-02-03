@@ -1,0 +1,102 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2025-02-03 16:55:18",
+    "containerVersion": {
+        "path": "accounts/6078614857/containers/191082275/versions/0",
+        "accountId": "6078614857",
+        "containerId": "191082275",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/6078614857/containers/191082275",
+            "accountId": "6078614857",
+            "containerId": "191082275",
+            "name": "Iviskin.no (Client)",
+            "publicId": "GTM-W4WZMV8Q",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1733417071909",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6078614857/containers/191082275/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": false,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true,
+                "supportTransformations": false
+            },
+            "tagIds": [
+                "GTM-W4WZMV8Q"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "6078614857",
+                "containerId": "191082275",
+                "tagId": "145",
+                "name": "Partner Ads Cookie creator",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n(function() {\n    try {\n        var captureAndStorePacidPaid = function() {\n            // Function to get URL parameter value\n            var getParameterByName = function(name) {\n                try {\n                    var url = window.location.href;\n                    name = name.replace(/[\\[\\]]/g, '\\\\$&');\n                    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),\n                        results = regex.exec(url);\n                    if (!results) return null;\n                    if (!results[2]) return '';\n                    return decodeURIComponent(results[2].replace(/\\+/g, ' '));\n                } catch (error) {\n                    console.error('Error getting parameter:', error);\n                    return null;\n                }\n            };\n\n            // Function to set cookie\n            var setCookie = function(name, value, days) {\n                try {\n                    var date = new Date();\n                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));\n                    var expires = \"expires=\" + date.toUTCString();\n                    document.cookie = name + \"=\" + value + \";\" + expires + \";path=/;domain=\" + getRootDomain();\n                } catch (error) {\n                    console.error('Error setting cookie:', error);\n                }\n            };\n\n            // Function to get root domain\n            var getRootDomain = function() {\n                try {\n                    var parts = window.location.hostname.split('.');\n                    if (parts.length > 2) {\n                        return parts.slice(-2).join('.');\n                    }\n                    return window.location.hostname;\n                } catch (error) {\n                    console.error('Error getting root domain:', error);\n                    return window.location.hostname;\n                }\n            };\n\n            // Get pacid and paid from URL parameters\n            var pacid = getParameterByName('pacid');\n            var paid = getParameterByName('paid');\n\n            // Store parameters in cookies if they exist\n            if (pacid) {\n                setCookie('pacid', pacid, 40);\n            }\n            if (paid) {\n                setCookie('paid', paid, 40);\n            }\n        };\n\n        // Call the function immediately\n        captureAndStorePacidPaid();\n    } catch (error) {\n        console.error('An error occurred in the main function:', error);\n    }\n})();\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1731337336538",
+                "firingTriggerId": [
+                    "144"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "6078614857",
+                "containerId": "191082275",
+                "triggerId": "144",
+                "name": "Partner Ads URL",
+                "type": "INIT",
+                "filter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "paid|pacid"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1731337336538"
+            }
+        ],
+        "fingerprint": "1738601718023",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6078614857/containers/191082275/versions/0?apiLink=version"
+    }
+}
