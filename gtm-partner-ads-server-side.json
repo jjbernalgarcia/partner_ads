@@ -1,0 +1,129 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2025-02-15 17:29:39",
+    "containerVersion": {
+        "path": "accounts/6091873848/containers/193388189/versions/0",
+        "accountId": "6091873848",
+        "containerId": "193388189",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/6091873848/containers/193388189",
+            "accountId": "6091873848",
+            "containerId": "193388189",
+            "name": "analytics_engine_server",
+            "publicId": "GTM-NRDTZTLG",
+            "usageContext": [
+                "SERVER"
+            ],
+            "fingerprint": "1723994478454",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6091873848/containers/193388189/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": true,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true,
+                "supportTransformations": true
+            },
+            "tagIds": [
+                "GTM-NRDTZTLG"
+            ],
+            "taggingServerUrls": [
+                "https://data.analyticsengine.co"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "6091873848",
+                "containerId": "193388189",
+                "tagId": "35",
+                "name": "Partner Ads Server-Side Tag",
+                "type": "cvt_193388189_34",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "pacId",
+                        "value": "{{pacid}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "partnerId",
+                        "value": "{{paid}}"
+                    }
+                ],
+                "fingerprint": "1739639740996",
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "6091873848",
+                "containerId": "193388189",
+                "variableId": "32",
+                "name": "paid",
+                "type": "ed",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "keyPath",
+                        "value": "paid"
+                    }
+                ],
+                "fingerprint": "1739639716327",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6091873848",
+                "containerId": "193388189",
+                "variableId": "33",
+                "name": "pacid",
+                "type": "ed",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "keyPath",
+                        "value": "pacid"
+                    }
+                ],
+                "fingerprint": "1739639716327",
+                "formatValue": {}
+            }
+        ],
+        "fingerprint": "1739640579782",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6091873848/containers/193388189/versions/0?apiLink=version",
+        "customTemplate": [
+            {
+                "accountId": "6091873848",
+                "containerId": "193388189",
+                "templateId": "34",
+                "name": "Partner Ads Tag",
+                "fingerprint": "1739639716327",
+                "templateData": "___INFO___\n\n{\n  \"type\": \"TAG\",\n  \"id\": \"cvt_temp_public_id\",\n  \"version\": 1,\n  \"securityGroups\": [],\n  \"displayName\": \"Partner Ads Tag\",\n  \"brand\": {\n    \"id\": \"brand_dummy\",\n    \"displayName\": \"\"\n  },\n  \"description\": \"\",\n  \"containerContexts\": [\n    \"SERVER\"\n  ]\n}\n\n\n___TEMPLATE_PARAMETERS___\n\n[\n  {\n    \"type\": \"TEXT\",\n    \"name\": \"programId\",\n    \"displayName\": \"Program ID\",\n    \"simpleValueType\": true,\n    \"alwaysInSummary\": true\n  },\n  {\n    \"type\": \"TEXT\",\n    \"name\": \"partnerId\",\n    \"displayName\": \"Partner ID\",\n    \"simpleValueType\": true\n  },\n  {\n    \"type\": \"TEXT\",\n    \"name\": \"pacId\",\n    \"displayName\": \"PAC ID\",\n    \"simpleValueType\": true\n  },\n  {\n    \"type\": \"TEXT\",\n    \"name\": \"ordreid\",\n    \"displayName\": \"Order ID\",\n    \"simpleValueType\": true\n  },\n  {\n    \"type\": \"TEXT\",\n    \"name\": \"omprSalg\",\n    \"displayName\": \"Value\",\n    \"simpleValueType\": true\n  }\n]\n\n\n___SANDBOXED_JS_FOR_SERVER___\n\nconst sendHttpGet = require('sendHttpGet');\nconst logToConsole = require('logToConsole');\nconst encodeUriComponent = require('encodeUriComponent');\n\n// Main tag code\nconst baseUrl = 'https://www.partner-ads.com/no/leadtracks2s.php';\nconst staticParams = 'type=salg&varenummer=x&antal=1';\n\nconst buildUrl = function() {\n  const programId = encodeUriComponent(data.programId);\n  const partnerId = encodeUriComponent(data.partnerId);\n  const pacId = encodeUriComponent(data.pacId);\n  \n  // Debug logging for all fields\n  logToConsole('Debug - All fields:', data);\n  \n  // Specific debug logging for ordreid\n  if (data.hasOwnProperty('ordreid')) {\n    logToConsole('Debug - ordreid is present:', data.ordreid);\n  } else {\n    logToConsole('Debug - ordreid is not present in the data object');\n  }\n  \n  // Use data.ordreid directly, encode it only if it exists\n  const ordreId = data.ordreid ? encodeUriComponent(data.ordreid) : '';\n  const omprSalg = encodeUriComponent(data.omprSalg);\n  \n  logToConsole('Debug - Encoded ordreId:', ordreId);\n  logToConsole('Debug - Encoded omprSalg:', omprSalg);\n\n  let url = baseUrl + '?programid=' + programId + \n                   '&partnerid=' + partnerId + \n                   '&pacid=' + pacId;\n\n  // Only add ordreid to the URL if it exists\n  if (ordreId) {\n    url += '&ordreid=' + ordreId;\n  }\n\n  url += '&omprsalg=' + omprSalg + '&' + staticParams;\n\n  return url;\n};\n\nconst onSuccess = function() {\n  data.gtmOnSuccess();\n};\n\nconst onFailure = function() {\n  data.gtmOnFailure();\n};\n\nconst url = buildUrl();\nlogToConsole('Sending request to URL:', url);\n\nsendHttpGet(url)\n  .then(function(response) {\n    if (response.statusCode >= 200 && response.statusCode < 300) {\n      logToConsole('HTTP GET request successful');\n      logToConsole('Response status code:', response.statusCode);\n      logToConsole('Response body:', response.body);\n      onSuccess();\n    } else {\n      logToConsole('HTTP GET request failed');\n      logToConsole('Response status code:', response.statusCode);\n      logToConsole('Response body:', response.body);\n      onFailure();\n    }\n  })\n  .catch(function(error) {\n    logToConsole('Error sending HTTP GET request:', error);\n    onFailure();\n  });\n\n\n___SERVER_PERMISSIONS___\n\n[\n  {\n    \"instance\": {\n      \"key\": {\n        \"publicId\": \"logging\",\n        \"versionId\": \"1\"\n      },\n      \"param\": [\n        {\n          \"key\": \"environments\",\n          \"value\": {\n            \"type\": 1,\n            \"string\": \"debug\"\n          }\n        }\n      ]\n    },\n    \"clientAnnotations\": {\n      \"isEditedByUser\": true\n    },\n    \"isRequired\": true\n  },\n  {\n    \"instance\": {\n      \"key\": {\n        \"publicId\": \"send_http\",\n        \"versionId\": \"1\"\n      },\n      \"param\": [\n        {\n          \"key\": \"allowedUrls\",\n          \"value\": {\n            \"type\": 1,\n            \"string\": \"any\"\n          }\n        }\n      ]\n    },\n    \"clientAnnotations\": {\n      \"isEditedByUser\": true\n    },\n    \"isRequired\": true\n  }\n]\n\n\n___TESTS___\n\nscenarios:\n- name: Untitled test 1\n  code: |-\n    const mockData = {\n      // Mocked field values\n    };\n\n    // Call runCode to run the template's code.\n    runCode(mockData);\n\n    // Verify that the tag finished successfully.\n    assertApi('gtmOnSuccess').wasCalled();\n- name: Untitled test 2\n  code: |-\n    const mockData = {\n      // Mocked field values\n    };\n\n    // Call runCode to run the template's code.\n    runCode(mockData);\n\n    // Verify that the tag finished successfully.\n    assertApi('gtmOnSuccess').wasCalled();\n\n\n___NOTES___\n\n\n\n\n"
+            }
+        ]
+    }
+}
